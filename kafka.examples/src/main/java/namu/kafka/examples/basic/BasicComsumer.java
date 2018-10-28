@@ -24,18 +24,14 @@ public class BasicComsumer {
 
 		props.put("key.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
 		props.put("value.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
-		System.out.println("looping...");
 		KafkaConsumer<String, String> consumer = new KafkaConsumer<String, String>(props);
 		consumer.subscribe(Arrays.asList("test-topic"));
-		System.out.println("looping...");
 		long start = System.currentTimeMillis();
 		long end = 0;
 		try {
 			int i = 0;
 			while (true) {
-				System.out.println("looping...");
 				ConsumerRecords<String, String> records = consumer.poll(Duration.ofSeconds(100));
-				System.out.println("looping...");
 				for (ConsumerRecord<String, String> record : records) {
 					//if (i++ % 100000 == 0) {
 						end = System.currentTimeMillis() - start;
